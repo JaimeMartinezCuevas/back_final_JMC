@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Función para manrjar la ruta raíz
 app.get('/', (req, res) => {
-  res.send('<h1>Hola mundo test</h1>');
+  res.send('test');
 });
 
 // Define the POST /songs route
