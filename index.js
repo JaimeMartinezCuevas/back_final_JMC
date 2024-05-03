@@ -7,12 +7,12 @@ const dbConnection = require('./src/config/db.js');
 
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 app.use(cors());
 //Manejar solicitudes JSON y URLs
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
@@ -37,10 +37,10 @@ app.use((req, res, next) => {
 
 //Función para manrjar la ruta raíz
 app.get('/', (req, res) => {
-  res.send('test');
-});
+  res.send('test')
+})
 
-// Define the POST /songs route
+//Define la ruta pa poder facer POST en /songs
 app.post('/songs', async (req, res) => {
   try {
     await addSong(req.body.title, req.body.link, req.body.artistName, req.body.genre, req.body.year);
@@ -50,7 +50,7 @@ app.post('/songs', async (req, res) => {
   }
 });
 
-// Define the GET /songs route
+//Define la ruta pa poder facer GET en /songs
 app.get('/songs', async (req, res) => {
   try {
     const songs = await getSongs();
@@ -60,7 +60,7 @@ app.get('/songs', async (req, res) => {
   }
 });
 
-// Define the DELETE /songs/:id route
+//Define el DELETE
 app.delete('/songs/:id', async (req, res) => {
   try {
     await deleteSong(req.params.id);
@@ -71,7 +71,6 @@ app.delete('/songs/:id', async (req, res) => {
   }
 });
 
-// Define the PUT /songs/:id route
 app.put('/songs/:id', async (req, res) => {
   try {
     await updateSong(req.params.id, req.body.title, req.body.link, req.body.artistName, req.body.genre, req.body.year);
@@ -81,7 +80,6 @@ app.put('/songs/:id', async (req, res) => {
   }
 });
 
-// Define the GET /songs/:id route
 app.get('/songs/:id', async (req, res) => {
   try {
     const song = await getSongById(req.params.id);
